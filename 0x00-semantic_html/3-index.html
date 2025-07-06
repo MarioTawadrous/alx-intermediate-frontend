@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A blog post about semantic HTML and accessibility practises">
+    <meta name="keywords" content="HTML, Semantic, Accessibility, Blog, SEO, ARIA">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic HTML with ARIA Attributes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 40px;
+        }
+        
+        article {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        article header {
+            background: none;
+            color: #2c3e50;
+            padding: 0;
+            text-align: left;
+        }
+        
+        article header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        article header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        section h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            display: block;
+            line-height: 1.6;
+        }
+        
+        .code-tag {
+            color: #3498db;
+        }
+        
+        .code-attr {
+            color: #e74c3c;
+        }
+        
+        .code-value {
+            color: #2ecc71;
+        }
+        
+        figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .placeholder-img {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            margin: 0 auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        figcaption {
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        article footer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        article footer p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        /* Form Styles */
+        .form-section {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .accessibility-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group input[aria-required="true"] {
+            background-color: #fff9e6;
+            border-left: 4px solid #e67e22;
+        }
+        
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #2980b9, #2573a7);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .alert-box {
+            margin-top: 25px;
+            padding: 15px;
+            background: #e8f4fd;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .aria-info {
+            background: #f9f9f9;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .aria-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .aria-info ul {
+            padding-left: 20px;
+        }
+        
+        .aria-info li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .aria-info code {
+            background: #eef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: linear-gradient(90deg, #2c3e50, #1a2a6c);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .copyright {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        
+        time {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            article header h2 {
+                font-size: 2rem;
+            }
+            
+            main {
+                padding: 20px;
+            }
+            
+            article, .form-section {
+                padding: 20px;
+            }
+            
+            .form-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Blog</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <article>
+                <header>
+                    <h2>Understanding Semantic HTML</h2>
+                    <p>Published on <time datetime="2024-09-10">September 10, 2024</time></p>
+                </header>
+                
+                <section>
+                    <h3>Introduction</h3>
+                    <p>Semantic HTML helps improve the accessibility and SEO of your website. By using meaningful tags that describe the content they contain, you create a better experience for both users and search engines.</p>
+                    <p>In this post, we'll explore the benefits of semantic HTML and how to implement it effectively. We'll cover the core semantic elements, their proper usage, and how they contribute to a more accessible web.</p>
+                </section>
+                
+                <section>
+                    <h3>Main Content</h3>
+                    <p>Using elements like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;header&gt;</code> ensures that both users and search engines can better understand the structure and content of a webpage.</p>
+                    
+                    <div class="code-block">
+                        <code>
+                            <span class="code-tag">&lt;article&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;header&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;h1&gt;</span>Article Title<span class="code-tag">&lt;/h1&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;/header&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;section&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;h2&gt;</span>Section Heading<span class="code-tag">&lt;/h2&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;p&gt;</span>Content goes here...<span class="code-tag">&lt;/p&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;/section&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;footer&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;p&gt;</span>Article footer content<span class="code-tag">&lt;/p&gt;</span><br>
+                            &nbsp;&nbsp;<span class="code-tag">&lt;/footer&gt;</span><br>
+                            <span class="code-tag">&lt;/article&gt;</span>
+                        </code>
+                    </div>
+                    
+                    <figure>
+                        <div class="placeholder-img">Semantic HTML Structure Visualization</div>
+                        <figcaption>An illustration of semantic HTML elements</figcaption>
+                    </figure>
+                    
+                    <p>Semantic elements clearly define different parts of a webpage, making it easier for:</p>
+                    <ul>
+                        <li>Screen readers to interpret content structure</li>
+                        <li>Search engines to understand content hierarchy</li>
+                        <li>Developers to maintain and update code</li>
+                        <li>Browsers to render content appropriately</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Conclusion</h3>
+                    <p>By adopting semantic HTML, you enhance your site's accessibility, improve SEO, and make the content easier to navigate. The proper use of semantic elements creates a solid foundation for all users, regardless of how they access your content.</p>
+                    <p>As web technologies continue to evolve, semantic HTML remains a fundamental best practice that ensures your website is future-proof and compatible with emerging technologies and accessibility standards.</p>
+                </section>
+                
+                <footer>
+                    <p>Written by John Doe</p>
+                    <p>Published on <time datetime="2024-09-11">2024-09-11</time></p>
+                </footer>
+            </article>
+            
+            <!-- New Section with Accessible Form -->
+            <section class="form-section">
+                <h2 id="form-title">Contact Form</h2>
+                
+                <div class="aria-info">
+                    <h4>ARIA Attributes in Action</h4>
+                    <p>This form demonstrates the use of ARIA attributes to enhance accessibility:</p>
+                    <ul>
+                        <li><code>role="form"</code> clearly identifies the form element</li>
+                        <li><code>aria-labelledby</code> associates the form with its title</li>
+                        <li><code>aria-required="true"</code> indicates mandatory fields</li>
+                        <li><code>aria-label</code> provides an accessible name for the submit button</li>
+                        <li><code>role="alert"</code> and <code>aria-live="polite"</code> create an accessible notification area</li>
+                    </ul>
+                </div>
+                
+                <form action="#" method="POST" aria-labelledby="form-title" role="form" class="accessibility-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" aria-required="true" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" aria-required="true" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" aria-label="Submit the form" class="submit-btn">Send Message</button>
+                    </div>
+                    
+                    <div aria-live="polite" role="alert" class="alert-box">
+                        Form submission status will appear here
+                    </div>
+                </form>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">
+                <p>@copyright 2024 - Semantic HTML & Accessibility Blog. All rights reserved.</p>
+                <p>Built with semantic HTML5 and ARIA for enhanced accessibility.</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.accessibility-form');
+            const alertBox = document.querySelector('[aria-live="polite"]');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                alertBox.textContent = "Form submitted successfully!";
+                alertBox.style.backgroundColor = "#e8f7f0";
+                alertBox.style.borderColor = "#2ecc71";
+                alertBox.style.color = "#27ae60";
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    form.reset();
+                    setTimeout(() => {
+                        alertBox.textContent = "Form submission status will appear here";
+                        alertBox.style.backgroundColor = "#e8f4fd";
+                        alertBox.style.borderColor = "#3498db";
+                        alertBox.style.color = "#2c3e50";
+                    }, 2000);
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
