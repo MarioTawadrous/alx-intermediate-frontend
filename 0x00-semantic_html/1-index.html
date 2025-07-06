@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A blog post about semantic HTML and accessibility practises">
+    <meta name="keywords" content="HTML, Semantic, Accessibility, Blog, SEO">
+    <meta name="author" content="Jane Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Html Blog Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        nav {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 40px 20px;
+        }
+        
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: linear-gradient(90deg, #2c3e50, #1a2a6c);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .copyright {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .seo-section {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border: 1px solid #bbdefb;
+        }
+        
+        .seo-section h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Semantic HTML & Accessibility</h1>
+                <p class="subtitle">Building Better Web Experiences Through Meaningful Markup</p>
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Articles</a>
+                    <a href="#">About</a>
+                    <a href="#">Resources</a>
+                    <a href="#">Contact</a>
+                </nav>
+            </div>
+        </header>
+        
+        <main>
+            <article>
+                <h2>The Power of Semantic HTML</h2>
+                
+                <section class="content-section">
+                    <p>Semantic HTML refers to the use of HTML tags that convey meaning about the content they contain. Rather than using generic <span class="highlight">&lt;div&gt;</span> elements for everything, semantic elements like <span class="highlight">&lt;header&gt;</span>, <span class="highlight">&lt;nav&gt;</span>, <span class="highlight">&lt;main&gt;</span>, <span class="highlight">&lt;article&gt;</span>, <span class="highlight">&lt;section&gt;</span>, and <span class="highlight">&lt;footer&gt;</span> provide both human developers and machines (like search engines and screen readers) with information about the structure and meaning of your content.</p>
+                    
+                    <p>This approach to HTML markup creates websites that are more accessible, more maintainable, and better optimized for search engines. By using elements that accurately describe their content, you're building a foundation that supports both user experience and technical requirements.</p>
+                </section>
+                
+                <section class="content-section">
+                    <h2>Benefits of Semantic HTML</h2>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h3>Enhanced Accessibility</h3>
+                            <p>Screen readers and other assistive technologies rely on semantic markup to properly interpret and navigate page content.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>Improved SEO</h3>
+                            <p>Search engines use semantic elements to understand content structure and importance, leading to better rankings.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>Easier Maintenance</h3>
+                            <p>Code with meaningful elements is more readable and maintainable for developers.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>Future Compatibility</h3>
+                            <p>Semantic HTML ensures your site remains compatible with future browsers and technologies.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="seo-section">
+                    <h3>SEO Benefits of Proper Semantic Structure</h3>
+                    <p>This page demonstrates the SEO enhancements described in the blog post. Notice the meta tags in the head section:</p>
+                    <ul>
+                        <li><strong>Charset declaration:</strong> &lt;meta charset="utf-8"&gt; ensures proper character encoding</li>
+                        <li><strong>Description meta tag:</strong> Provides a concise summary for search results</li>
+                        <li><strong>Keywords meta tag:</strong> Identifies relevant topics (though less important today)</li>
+                        <li><strong>Author meta tag:</strong> Credits content creator</li>
+                        <li><strong>Viewport meta tag:</strong> Ensures proper mobile rendering</li>
+                        <li><strong>Title tag:</strong> Clearly describes page content</li>
+                    </ul>
+                    <p>Combined with the semantic HTML structure, these elements create a solid foundation for search engine visibility.</p>
+                </section>
+            </article>
+        </main>
+        
+        <footer>
+            <div class="copyright">
+                <p>@copyright 2023 - Semantic HTML Blog. All rights reserved.</p>
+                <p>This page demonstrates the use of semantic HTML5 elements for improved accessibility and SEO.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
