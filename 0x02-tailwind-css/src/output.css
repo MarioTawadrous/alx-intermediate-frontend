@@ -1,0 +1,29 @@
+/* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
+/* ... (Tailwind's base/reset styles) ... */
+
+/*
+Example snippet of what you might see:
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+}
+
+/* ... (about 400+ lines of base/reset styles) ... */
+
+/* No utility classes will appear here until you use them in your HTML/JS! */
